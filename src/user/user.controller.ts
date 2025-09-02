@@ -3,8 +3,9 @@ import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { editUserDto } from './dto';
 import { UserService } from './user.service';
-import type { User } from 'generated/prisma';
+import { Prisma } from '@prisma/client';
 
+type User = Prisma.UserGetPayload<{}>;
 @Controller('users')
 @UseGuards(JwtGuard)
 export class UserController {

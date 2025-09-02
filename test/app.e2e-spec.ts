@@ -115,7 +115,7 @@ describe('App e2e', () => {
       it("should get bookmarks",()=>{
         return pactum
         .spec()
-        .patch('/bookmarks')
+        .get('/bookmarks')
         .withHeaders({
           Authorization: 'Bearer $S{user_token}',})
         .expectStatus(200)
