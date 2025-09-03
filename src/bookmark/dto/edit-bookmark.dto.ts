@@ -10,5 +10,5 @@ export class EditBookmarkDto{
     description?:string
     @IsString()
     @IsOptional()
-    link?:string
+    linl?:string
 }

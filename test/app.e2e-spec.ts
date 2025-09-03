@@ -5,6 +5,7 @@ import { AppModule } from 'src/app.module';
 import { AuthDto } from 'src/auth/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { editUserDto } from 'src/user/dto';
+import { CreateBookmarkDto } from 'src/bookmark/dto';
 describe('App e2e', () => {
   let app: INestApplication;
   let prisma: PrismaService;
@@ -119,11 +120,24 @@ describe('App e2e', () => {
         .withHeaders({
           Authorization: 'Bearer $S{user_token}',})
         .expectStatus(200)
-        .inspect()
       }
       )
     });
-    describe('Create Bookmark', () => {});
+    describe('Create Bookmark', () => {
+      const createBookmarkDto:CreateBookmarkDto ={
+        title:"first bookmarkk",
+        linl:"https://youtu.be/GHTA143_b-s"
+      }
+      it("should create bookmarks",()=>{
+        return pactum
+        .spec()
+        .post('/bookmarks')
+        .withHeaders({
+          Authorization: 'Bearer $S{user_token}',})
+          .withBody(createBookmarkDto)
+        .expectStatus(201)
+      })
+    });
     describe('Edit Boookmark by Id', () => {});
     describe('Delete Bookmark by Id', () => {});
   });
